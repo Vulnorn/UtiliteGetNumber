@@ -18,7 +18,7 @@ namespace UtiliteGetNumber
                 Console.WriteLine($"Число - {number}");
             }
 
-            private static int GetNumber(int lowerLimitRangeNumbers = Int32.MinValue, int upperLimitRangeNumbers = Int32.MaxValue)
+            public static int GetNumber(int lowerLimitRangeNumbers = Int32.MinValue, int upperLimitRangeNumbers = Int32.MaxValue)
             {
                 bool isEnterNumber = true;
                 int enterNumber = 0;
