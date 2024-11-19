@@ -32,14 +32,14 @@ namespace UtiliteGetNumber
 
                     if (int.TryParse(userInput, out enterNumber) == false)
                         Console.WriteLine("Не корректный ввод.");
-                    else if (GetNumberInRange(enterNumber, lowerLimitRangeNumbers, upperLimitRangeNumbers))
+                    else if (VerifyForAcceptableNumber(enterNumber, lowerLimitRangeNumbers, upperLimitRangeNumbers))
                         isEnterNumber = false;
                 }
 
                 return enterNumber;
             }
 
-            private static bool GetNumberInRange(int number, int lowerLimitRangeNumbers, int upperLimitRangeNumbers)
+            private static bool VerifyForAcceptableNumber(int number, int lowerLimitRangeNumbers, int upperLimitRangeNumbers)
             {
                 if (number < lowerLimitRangeNumbers)
                 {
