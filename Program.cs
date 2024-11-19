@@ -5,6 +5,11 @@ namespace UtiliteGetNumber
 {
     internal class Program
     {
+        static void Main(string[] args)
+        {
+            Utilite.ShowReceivedNumber();
+        }
+
         class Utilite
         {
             public static void ShowReceivedNumber()
@@ -50,7 +55,6 @@ namespace UtiliteGetNumber
                 {
                     return true;
                 }
-
             }
         }
     }
