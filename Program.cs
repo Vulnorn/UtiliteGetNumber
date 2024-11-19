@@ -12,28 +12,7 @@ namespace UtiliteGetNumber
                 Console.WriteLine($"Число - {number}");
             }
 
-            public static int GetNumber()
-            {
-                bool isEnterNumber = true;
-                int enterNumber = 0;
-                string userInput;
-
-                while (isEnterNumber)
-                {
-                    Console.WriteLine($"Введите число.");
-
-                    userInput = Console.ReadLine();
-
-                    if (int.TryParse(userInput, out enterNumber) == false)
-                        Console.WriteLine("Не корректный ввод.");
-                    else
-                        isEnterNumber = false;
-                }
-
-                return enterNumber;
-            }
-
-            public static int GetNumber(char signNumber)
+            public static int GetNumber(char signNumber = '-')
             {
                 bool isEnterNumber = true;
                 int enterNumber = 0;
@@ -49,12 +28,10 @@ namespace UtiliteGetNumber
                     {
                         Console.WriteLine("Не корректный ввод.");
                     }
-                    else if(signNumber=='-')
+                    else if (signNumber == '+')
                     {
                         if (GetNumberRange(enterNumber))
-                        {
                             Console.WriteLine("Число отрицательное, нужно ввести положительное.");
-                        }
                         else
                             isEnterNumber = false;
                     }
