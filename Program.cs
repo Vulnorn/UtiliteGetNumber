@@ -31,9 +31,9 @@ namespace UtiliteGetNumber
                     else if (signNumber == '+')
                     {
                         if (GetNumberRange(enterNumber))
-                            Console.WriteLine("Число отрицательное, нужно ввести положительное.");
-                        else
                             isEnterNumber = false;
+                        else
+                            Console.WriteLine("Число отрицательное, нужно ввести положительное.");
                     }
                     else
                     {
