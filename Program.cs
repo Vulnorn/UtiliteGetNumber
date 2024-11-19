@@ -28,8 +28,6 @@ namespace UtiliteGetNumber
                     if (int.TryParse(userInput, out enterNumber) == false)
                         Console.WriteLine("Не корректный ввод.");
                     else if (CheckRange(enterNumber, lowerLimitRangeNumbers, upperLimitRangeNumbers))
-                        Console.WriteLine("Не корректный ввод.");
-                    else
                         isEnterNumber = false;
                 }
 
