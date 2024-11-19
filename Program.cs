@@ -1,4 +1,5 @@
-﻿using static System.Runtime.InteropServices.JavaScript.JSType;
+﻿using System.Collections.Generic;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace UtiliteGetNumber
 {
@@ -12,7 +13,7 @@ namespace UtiliteGetNumber
                 Console.WriteLine($"Число - {number}");
             }
 
-            public static int GetNumber(char signNumber = '-')
+            private static int GetNumber(int lowerLimitRangeNumbers = Int32.MinValue, int upperLimitRangeNumbers = Int32.MaxValue)
             {
                 bool isEnterNumber = true;
                 int enterNumber = 0;
@@ -25,33 +26,33 @@ namespace UtiliteGetNumber
                     userInput = Console.ReadLine();
 
                     if (int.TryParse(userInput, out enterNumber) == false)
-                    {
                         Console.WriteLine("Не корректный ввод.");
-                    }
-                    else if (signNumber == '+')
-                    {
-                        if (GetNumberRange(enterNumber))
-                            isEnterNumber = false;
-                        else
-                            Console.WriteLine("Число отрицательное, нужно ввести положительное.");
-                    }
+                    else if (CheckRange(enterNumber, lowerLimitRangeNumbers, upperLimitRangeNumbers))
+                        Console.WriteLine("Не корректный ввод.");
                     else
-                    {
                         isEnterNumber = false;
-                    }
                 }
 
                 return enterNumber;
             }
 
-            private static bool GetNumberRange(int number)
+            private static bool CheckRange(int number, int lowerLimitRangeNumbers, int upperLimitRangeNumbers)
             {
-                int positiveValue = 0;
-
-                if (number < positiveValue)
+                if (number < lowerLimitRangeNumbers)
+                {
+                    Console.WriteLine($"Число вышло за нижний предел допустимого значения.");
+                    return false;
+                }
+                else if (number > upperLimitRangeNumbers)
+                {
+                    Console.WriteLine($"Число вышло за верхний предел допустимого значения.");
+                    return false;
+                }
+                else
+                {
                     return true;
+                }
 
-                return false;
             }
         }
     }
