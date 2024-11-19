@@ -1,4 +1,6 @@
-﻿namespace UtiliteGetNumber
+﻿using static System.Runtime.InteropServices.JavaScript.JSType;
+
+namespace UtiliteGetNumber
 {
     internal class Program
     {
@@ -10,76 +12,59 @@
                 Console.WriteLine($"Число - {number}");
             }
 
-            public static void ShowReceivedPositiveNumber()
-            {
-                int number = GetPositiveNumber();
-                Console.WriteLine($"Число - {number}");
-            }
-
-            public static int GetNumber(int enterNumber = 0)
+            public static int GetNumber()
             {
                 bool isEnterNumber = true;
+                int enterNumber = 0;
+                string userInput;
 
                 while (isEnterNumber)
                 {
                     Console.WriteLine($"Введите число.");
 
-                    if (TryGetNumber(out int number) == true)
-                    {
+                    userInput = Console.ReadLine();
+
+                    if (int.TryParse(userInput, out enterNumber) == false)
+                        Console.WriteLine("Не корректный ввод.");
+                    else
                         isEnterNumber = false;
-                        enterNumber = number;
-                    }
                 }
 
                 return enterNumber;
             }
 
-            public static int GetPositiveNumber(int enterPositiveNumber = 0)
+            public static int GetNumber(char signNumber)
             {
                 bool isEnterNumber = true;
+                int enterNumber = 0;
+                string userInput;
 
                 while (isEnterNumber)
                 {
                     Console.WriteLine($"Введите число.");
 
-                    if (TryGetNumber(out int number) == true)
-                    {
-                        enterPositiveNumber = number;
+                    userInput = Console.ReadLine();
 
-                        if (GetNumberRange(enterPositiveNumber))
+                    if (int.TryParse(userInput, out enterNumber) == false)
+                    {
+                        Console.WriteLine("Не корректный ввод.");
+                    }
+                    else if(signNumber=='-')
+                    {
+                        if (GetNumberRange(enterNumber))
                         {
                             Console.WriteLine("Число отрицательное, нужно ввести положительное.");
                         }
                         else
                             isEnterNumber = false;
                     }
+                    else
+                    {
+                        isEnterNumber = false;
+                    }
                 }
 
-                return enterPositiveNumber;
-            }
-
-            public static bool TryGetNumber(out int numder)
-            {
-                string userInput;
-
-                do
-                {
-                    userInput = Console.ReadLine();
-                }
-                while (TryGetInputValue(userInput, out numder));
-
-                return true;
-            }
-
-            private static bool TryGetInputValue(string input, out int number)
-            {
-                if (int.TryParse(input, out number) == false)
-                {
-                    Console.WriteLine("Не корректный ввод.");
-                    return true;
-                }
-
-                return false;
+                return enterNumber;
             }
 
             private static bool GetNumberRange(int number)
