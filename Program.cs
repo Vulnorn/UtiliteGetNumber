@@ -5,20 +5,15 @@ namespace UtiliteGetNumber
 {
     internal class Program
     {
-        static void Main(string[] args)
-        {
-            Utilite.ShowReceivedNumber();
-        }
-
         class Utilite
         {
             public static void ShowReceivedNumber()
             {
-                int number = GetNumber();
+                int number = GetNumberInRange();
                 Console.WriteLine($"Число - {number}");
             }
 
-            public static int GetNumber(int lowerLimitRangeNumbers = Int32.MinValue, int upperLimitRangeNumbers = Int32.MaxValue)
+            public static int GetNumberInRange(int lowerLimitRangeNumbers = Int32.MinValue, int upperLimitRangeNumbers = Int32.MaxValue)
             {
                 bool isEnterNumber = true;
                 int enterNumber = 0;
@@ -51,10 +46,8 @@ namespace UtiliteGetNumber
                     Console.WriteLine($"Число вышло за верхний предел допустимого значения.");
                     return false;
                 }
-                else
-                {
-                    return true;
-                }
+
+                return true;
             }
         }
     }
