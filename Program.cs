@@ -1,54 +1,53 @@
 ﻿using System.Collections.Generic;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
-namespace UtiliteGetNumber
+namespace Utilite
 {
-    internal class Program
+    class Utilite
     {
-        class Utilite
+        public static Random s_random = new Random();
+
+        public static int GenerateRandomNumber(int lowerLimitRangeRandom, int upperLimitRangeRandom)
         {
-            public static void ShowReceivedNumber()
+            int numberRandom = s_random.Next(lowerLimitRangeRandom, upperLimitRangeRandom);
+            return numberRandom;
+        }
+
+        public static int GetNumberInRange(int lowerLimitRangeNumbers = Int32.MinValue, int upperLimitRangeNumbers = Int32.MaxValue)
+        {
+            bool isEnterNumber = true;
+            int enterNumber = 0;
+            string userInput;
+
+            while (isEnterNumber)
             {
-                int number = GetNumberInRange();
-                Console.WriteLine($"Число - {number}");
+                Console.WriteLine($"Введите число.");
+
+                userInput = Console.ReadLine();
+
+                if (int.TryParse(userInput, out enterNumber) == false)
+                    Console.WriteLine("Не корректный ввод.");
+                else if (VerifyForAcceptableNumber(enterNumber, lowerLimitRangeNumbers, upperLimitRangeNumbers))
+                    isEnterNumber = false;
             }
 
-            public static int GetNumberInRange(int lowerLimitRangeNumbers = Int32.MinValue, int upperLimitRangeNumbers = Int32.MaxValue)
+            return enterNumber;
+        }
+
+        private static bool VerifyForAcceptableNumber(int number, int lowerLimitRangeNumbers, int upperLimitRangeNumbers)
+        {
+            if (number < lowerLimitRangeNumbers)
             {
-                bool isEnterNumber = true;
-                int enterNumber = 0;
-                string userInput;
-
-                while (isEnterNumber)
-                {
-                    Console.WriteLine($"Введите число.");
-
-                    userInput = Console.ReadLine();
-
-                    if (int.TryParse(userInput, out enterNumber) == false)
-                        Console.WriteLine("Не корректный ввод.");
-                    else if (VerifyForAcceptableNumber(enterNumber, lowerLimitRangeNumbers, upperLimitRangeNumbers))
-                        isEnterNumber = false;
-                }
-
-                return enterNumber;
+                Console.WriteLine($"Число вышло за нижний предел допустимого значения.");
+                return false;
+            }
+            else if (number > upperLimitRangeNumbers)
+            {
+                Console.WriteLine($"Число вышло за верхний предел допустимого значения.");
+                return false;
             }
 
-            private static bool VerifyForAcceptableNumber(int number, int lowerLimitRangeNumbers, int upperLimitRangeNumbers)
-            {
-                if (number < lowerLimitRangeNumbers)
-                {
-                    Console.WriteLine($"Число вышло за нижний предел допустимого значения.");
-                    return false;
-                }
-                else if (number > upperLimitRangeNumbers)
-                {
-                    Console.WriteLine($"Число вышло за верхний предел допустимого значения.");
-                    return false;
-                }
-
-                return true;
-            }
+            return true;
         }
     }
 }
